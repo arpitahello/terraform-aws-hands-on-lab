@@ -1,0 +1,110 @@
+nano main.tf :Opening a terminal-based text editor
+→ Writing Terraform code directly in Linux/WSL/Cloud shell                               
+
+Inside nano:
+
+Action	Key
+Save file	CTRL + O
+Confirm save	ENTER
+Exit editor	CTRL + X
+
+1. Open terminal
+2. Create folder
+3. Open nano editor
+4. Write Terraform code
+5. Save file
+6. Run terraform init → plan → apply
+7. Create EC2 in AWS Mumbai
+8. Destroy when done
+
+
+
+terraform-ec2-public-ip/
+│
+├── provider.tf
+├── main.tf
+├── variables.tf
+├── terraform.tfvars
+└── outputs.tf
+
+                ┌──────────────────────────┐
+                │   Create Project Folder  │
+                │ mkdir terraform-ec2      │
+                │ cd terraform-ec2         │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ WRITE CODE (NANO EDITOR) │
+                │                          │
+                │ nano provider.tf         │
+                │ nano main.tf             │
+                │ nano variables.tf        │
+                │ nano terraform.tfvars    │
+                │ nano outputs.tf          │
+                │                          │
+                │ (save: CTRL+O, exit CTRL+X)
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ terraform init          │
+                │ (download AWS plugin)   │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ terraform validate      │
+                │ (check syntax errors)   │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ terraform plan          │
+                │ (preview EC2 creation)  │
+                │ + Public IP attach      │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ terraform apply         │
+                │ (CREATE RESOURCES)      │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+        ┌────────────────────────────────────────┐
+        │ AWS ap-south-1 (Mumbai Region)         │
+        │                                        │
+        │ EC2 Instance Created                   │
+        │ ├── Private IP                         │
+        │ ├── Public IP                          │
+        │ └── Security Group attached            │
+        └───────────────┬────────────────────────┘
+                        │
+                        ▼
+                ┌──────────────────────────┐
+                │ terraform.tfstate       │
+                │ (stores EC2 details)    │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ terraform output        │
+                │ shows:                  │
+                │ - instance_id          │
+                │ - public_ip            │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ terraform destroy       │
+                │ (DELETE EC2 + IP)       │
+                └──────────┬───────────────┘
+                           │
+                           ▼
+                ┌──────────────────────────┐
+                │ AWS Cleanup Completed   │
+                │ EC2 terminated         │
+                │ Public IP released     │
+                └──────────────────────────┘
+
