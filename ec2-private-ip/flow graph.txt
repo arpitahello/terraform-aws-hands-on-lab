@@ -1,0 +1,92 @@
+ 👉 Terraform creates EC2
+👉 You disabled public IP using:
+
+associate_public_ip_address = false
+
+👉 Instance becomes private
+👉 Only reachable inside VPC
+
+
+
+
+
+
+
+
+               ┌──────────────────────────────┐
+                │ Create Project Folder        │
+                │ terraform-ec2-private-ip     │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ WRITE CODE (NANO EDITOR)     │
+                │ nano provider.tf             │
+                │ nano main.tf                 │
+                │ nano variables.tf            │
+                │ nano terraform.tfvars        │
+                │ nano outputs.tf              │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ terraform init              │
+                │ (download AWS provider)     │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ terraform validate          │
+                │ (check syntax)              │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ terraform plan              │
+                │ (preview EC2 creation)      │
+                │ → NO public IP planned      │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ terraform apply             │
+                │ (CREATE EC2 INSTANCE)       │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+        ┌────────────────────────────────────────────┐
+        │ AWS ap-south-1 (Mumbai Region)             │
+        │                                            │
+        │ EC2 Instance Created                       │
+        │ ├── Private IP ✔                           │
+        │ ├── Public IP ❌ (NOT ASSIGNED)            │
+        │ └── Runs inside VPC subnet                 │
+        └───────────────┬────────────────────────────┘
+                        │
+                        ▼
+                ┌──────────────────────────────┐
+                │ terraform.tfstate           │
+                │ (stores EC2 info)           │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ terraform output            │
+                │ → instance_id              │
+                │ → private_ip               │
+                │ → public_ip = null         │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+                ┌──────────────────────────────┐
+                │ terraform destroy           │
+                │ (DELETE EC2 INSTANCE)       │
+                └──────────────┬───────────────┘
+                               │
+                               ▼
+        ┌────────────────────────────────────────────┐
+        │ AWS CLEANUP                                │
+        │ EC2 terminated                             │
+        │ Private IP released                        │
+        │ State file removed                         │
+        └────────────────────────────────────────────┘
