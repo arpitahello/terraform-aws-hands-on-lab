@@ -1,0 +1,7 @@
+aws_region  = "ap-south-1"
+
+bucket_name = "arpita-demo-final-bucket-2026-xyz999"
+
+queue_name  = "s3-event-queue-final"
+
+lambda_name = "s3-file-logger-final"

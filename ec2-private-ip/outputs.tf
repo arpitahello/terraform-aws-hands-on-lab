@@ -1,0 +1,14 @@
+output "instance_id" {
+  description = "EC2 Instance ID"
+  value       = aws_instance.private_ec2.id
+}
+
+output "private_ip" {
+  description = "Private IP Address"
+  value       = aws_instance.private_ec2.private_ip
+}
+
+output "public_ip" {
+  description = "Public IP Address"
+  value       = aws_instance.private_ec2.public_ip
+}
